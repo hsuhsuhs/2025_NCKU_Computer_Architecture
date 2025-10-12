@@ -1,0 +1,220 @@
+00000000 <main>:
+    0:        ff810113        addi x2 x2 -8
+    4:        00112223        sw x1 4 x2
+    8:        00812023        sw x8 0 x2
+    c:        00000413        addi x8 x0 0
+    10:        10000517        auipc x10 0x10000
+    14:        0b550513        addi x10 x10 181
+    18:        2b8000ef        jal x1 696 <print_string>
+    1c:        10000517        auipc x10 0x10000
+    20:        03150513        addi x10 x10 49
+    24:        10000597        auipc x11 0x10000
+    28:        03d58593        addi x11 x11 61
+    2c:        10000617        auipc x12 0x10000
+    30:        04960613        addi x12 x12 73
+    34:        00500693        addi x13 x0 5
+    38:        06c000ef        jal x1 108 <run_test_suite>
+    3c:        00a40433        add x8 x8 x10
+    40:        10000517        auipc x10 0x10000
+    44:        0af50513        addi x10 x10 175
+    48:        288000ef        jal x1 648 <print_string>
+    4c:        10000517        auipc x10 0x10000
+    50:        03d50513        addi x10 x10 61
+    54:        10000597        auipc x11 0x10000
+    58:        04958593        addi x11 x11 73
+    5c:        10000617        auipc x12 0x10000
+    60:        05560613        addi x12 x12 85
+    64:        00500693        addi x13 x0 5
+    68:        03c000ef        jal x1 60 <run_test_suite>
+    6c:        00a40433        add x8 x8 x10
+    70:        00041a63        bne x8 x0 20 <some_tests_failed>
+
+00000074 <all_tests_passed>:
+    74:        10000517        auipc x10 0x10000
+    78:        14950513        addi x10 x10 329
+    7c:        254000ef        jal x1 596 <print_string>
+    80:        0100006f        jal x0 16 <exit_program>
+
+00000084 <some_tests_failed>:
+    84:        10000517        auipc x10 0x10000
+    88:        15750513        addi x10 x10 343
+    8c:        244000ef        jal x1 580 <print_string>
+
+00000090 <exit_program>:
+    90:        00012403        lw x8 0 x2
+    94:        00412083        lw x1 4 x2
+    98:        00810113        addi x2 x2 8
+    9c:        00a00893        addi x17 x0 10
+    a0:        00000073        ecall
+
+000000a4 <run_test_suite>:
+    a4:        fe410113        addi x2 x2 -28
+    a8:        00112c23        sw x1 24 x2
+    ac:        00812a23        sw x8 20 x2
+    b0:        00912823        sw x9 16 x2
+    b4:        01212623        sw x18 12 x2
+    b8:        01312423        sw x19 8 x2
+    bc:        01412223        sw x20 4 x2
+    c0:        01512023        sw x21 0 x2
+    c4:        00050413        addi x8 x10 0
+    c8:        00058493        addi x9 x11 0
+    cc:        00060913        addi x18 x12 0
+    d0:        00068993        addi x19 x13 0
+    d4:        00000a13        addi x20 x0 0
+    d8:        00000a93        addi x21 x0 0
+    dc:        00068f13        addi x30 x13 0
+
+000000e0 <test_loop>:
+    e0:        00040513        addi x10 x8 0
+    e4:        00048593        addi x11 x9 0
+    e8:        00090613        addi x12 x18 0
+    ec:        07c000ef        jal x1 124 <run_single_test>
+    f0:        00aa8ab3        add x21 x21 x10
+    f4:        00440413        addi x8 x8 4
+    f8:        00448493        addi x9 x9 4
+    fc:        00490913        addi x18 x18 4
+    100:        fff98993        addi x19 x19 -1
+    104:        fc099ee3        bne x19 x0 -36 <test_loop>
+    108:        415f0a33        sub x20 x30 x21
+    10c:        10000517        auipc x10 0x10000
+    110:        08e50513        addi x10 x10 142
+    114:        1bc000ef        jal x1 444 <print_string>
+    118:        000a0513        addi x10 x20 0
+    11c:        1cc000ef        jal x1 460 <print_int>
+    120:        10000517        auipc x10 0x10000
+    124:        08750513        addi x10 x10 135
+    128:        1a8000ef        jal x1 424 <print_string>
+    12c:        000f0513        addi x10 x30 0
+    130:        1b8000ef        jal x1 440 <print_int>
+    134:        10000517        auipc x10 0x10000
+    138:        07750513        addi x10 x10 119
+    13c:        194000ef        jal x1 404 <print_string>
+    140:        000a8513        addi x10 x21 0
+    144:        00012a83        lw x21 0 x2
+    148:        00412a03        lw x20 4 x2
+    14c:        00812983        lw x19 8 x2
+    150:        00c12903        lw x18 12 x2
+    154:        01012483        lw x9 16 x2
+    158:        01412403        lw x8 20 x2
+    15c:        01812083        lw x1 24 x2
+    160:        01c10113        addi x2 x2 28
+    164:        00008067        jalr x0 x1 0
+
+00000168 <run_single_test>:
+    168:        fec10113        addi x2 x2 -20
+    16c:        00112823        sw x1 16 x2
+    170:        00812623        sw x8 12 x2
+    174:        00912423        sw x9 8 x2
+    178:        01212223        sw x18 4 x2
+    17c:        01312023        sw x19 0 x2
+    180:        00052403        lw x8 0 x10
+    184:        0005a483        lw x9 0 x11
+    188:        00062903        lw x18 0 x12
+    18c:        00048513        addi x10 x9 0
+    190:        0e8000ef        jal x1 232 <f32_to_bf16>
+    194:        00050993        addi x19 x10 0
+    198:        130000ef        jal x1 304 <bf16_to_f32>
+    19c:        00050293        addi x5 x10 0
+    1a0:        01091313        slli x6 x18 16
+    1a4:        10000517        auipc x10 0x10000
+    1a8:        f8750513        addi x10 x10 -121
+    1ac:        124000ef        jal x1 292 <print_string>
+    1b0:        00040513        addi x10 x8 0
+    1b4:        11c000ef        jal x1 284 <print_string>
+    1b8:        10000517        auipc x10 0x10000
+    1bc:        f7b50513        addi x10 x10 -133
+    1c0:        110000ef        jal x1 272 <print_string>
+    1c4:        00048513        addi x10 x9 0
+    1c8:        114000ef        jal x1 276 <print_hex32>
+    1cc:        10000517        auipc x10 0x10000
+    1d0:        f7b50513        addi x10 x10 -133
+    1d4:        0fc000ef        jal x1 252 <print_string>
+    1d8:        00098513        addi x10 x19 0
+    1dc:        100000ef        jal x1 256 <print_hex32>
+    1e0:        10000517        auipc x10 0x10000
+    1e4:        f7450513        addi x10 x10 -140
+    1e8:        0e8000ef        jal x1 232 <print_string>
+    1ec:        00028513        addi x10 x5 0
+    1f0:        0ec000ef        jal x1 236 <print_hex32>
+    1f4:        04628663        beq x5 x6 76 <test_success>
+
+000001f8 <test_fail>:
+    1f8:        10000517        auipc x10 0x10000
+    1fc:        f7a50513        addi x10 x10 -134
+    200:        0d0000ef        jal x1 208 <print_string>
+    204:        10000517        auipc x10 0x10000
+    208:        f7750513        addi x10 x10 -137
+    20c:        0c4000ef        jal x1 196 <print_string>
+    210:        00028513        addi x10 x5 0
+    214:        0c8000ef        jal x1 200 <print_hex32>
+    218:        10000517        auipc x10 0x10000
+    21c:        f7050513        addi x10 x10 -144
+    220:        0b0000ef        jal x1 176 <print_string>
+    224:        00030513        addi x10 x6 0
+    228:        0b4000ef        jal x1 180 <print_hex32>
+    22c:        10000517        auipc x10 0x10000
+    230:        f6b50513        addi x10 x10 -149
+    234:        09c000ef        jal x1 156 <print_string>
+    238:        00100513        addi x10 x0 1
+    23c:        0200006f        jal x0 32 <end_single_test>
+
+00000240 <test_success>:
+    240:        10000517        auipc x10 0x10000
+    244:        f2950513        addi x10 x10 -215
+    248:        088000ef        jal x1 136 <print_string>
+    24c:        10000517        auipc x10 0x10000
+    250:        f6f50513        addi x10 x10 -145
+    254:        07c000ef        jal x1 124 <print_string>
+    258:        00000513        addi x10 x0 0
+
+0000025c <end_single_test>:
+    25c:        00012983        lw x19 0 x2
+    260:        00412903        lw x18 4 x2
+    264:        00812483        lw x9 8 x2
+    268:        00c12403        lw x8 12 x2
+    26c:        01012083        lw x1 16 x2
+    270:        01410113        addi x2 x2 20
+    274:        00008067        jalr x0 x1 0
+
+00000278 <f32_to_bf16>:
+    278:        01755293        srli x5 x10 23
+    27c:        0ff2f293        andi x5 x5 255
+    280:        0ff00313        addi x6 x0 255
+    284:        02628e63        beq x5 x6 60 <is_nan_or_inf>
+    288:        800002b7        lui x5 0x80000
+    28c:        00557333        and x6 x10 x5
+    290:        fff2c293        xori x5 x5 -1
+    294:        005573b3        and x7 x10 x5
+    298:        0103de13        srli x28 x7 16
+    29c:        001e7e13        andi x28 x28 1
+    2a0:        00008eb7        lui x29 0x8
+    2a4:        fffe8e93        addi x29 x29 -1
+    2a8:        01de0e33        add x28 x28 x29
+    2ac:        01c383b3        add x7 x7 x28
+    2b0:        0103d393        srli x7 x7 16
+    2b4:        01035313        srli x6 x6 16
+    2b8:        0063e533        or x10 x7 x6
+    2bc:        00008067        jalr x0 x1 0
+
+000002c0 <is_nan_or_inf>:
+    2c0:        01055513        srli x10 x10 16
+    2c4:        00008067        jalr x0 x1 0
+
+000002c8 <bf16_to_f32>:
+    2c8:        01051513        slli x10 x10 16
+    2cc:        00008067        jalr x0 x1 0
+
+000002d0 <print_string>:
+    2d0:        00400893        addi x17 x0 4
+    2d4:        00000073        ecall
+    2d8:        00008067        jalr x0 x1 0
+
+000002dc <print_hex32>:
+    2dc:        02200893        addi x17 x0 34
+    2e0:        00000073        ecall
+    2e4:        00008067        jalr x0 x1 0
+
+000002e8 <print_int>:
+    2e8:        00100893        addi x17 x0 1
+    2ec:        00000073        ecall
+    2f0:        00008067        jalr x0 x1 0
