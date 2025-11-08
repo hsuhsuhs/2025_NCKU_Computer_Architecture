@@ -1,14 +1,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-/* [PORTING] We must declare the functions provided by our main.c harness */
 extern void print_int(unsigned long);
 extern void print_char(char);
 extern int printf(const char *format, ...); // This is our "fake" printf
 
-/*
- * [PORTING] We replaced the "real" printf() with our bare-metal functions
- */
+
 static void print_move(int disk, char from, char to)
 {
     printf("Move Disk "); // Call fake printf
@@ -19,20 +16,13 @@ static void print_move(int disk, char from, char to)
     print_char(to);
     printf("'\n");
 }
-
-/* [PORTING] Renamed 'main' to 'qz2_A_main' per user request */
 int qz2_A_main()
 {
-    int n_disks = 3; /* Number of disks */
-
-    /* [PORTING] Replaced (1 << n_disks) with constant 8 to avoid linker errors */
-    /* for __lshdi3, which is part of the C library we don't have. */
-    /* int total_moves = (1 << n_disks) - 1; */
+    int n_disks = 3; 
     int total_moves = 7; /* (1 << 3) - 1 = 7 */
 
     const char pegs[3] = {'A', 'B', 'C'}; /* Peg labels */
     
-    /* [PORTING] Use volatile to prevent optimization bugs we saw in hw1_B */
     /* This array is heavily modified, so 'volatile' is safer. */
     volatile int pos[n_disks]; /* Disk positions: 0-A, 1-B, 2-C */
 
@@ -60,7 +50,7 @@ int qz2_A_main()
         int changed_bit = curr_gray ^ prev_gray;
 
         /* Identify the disk to move (0-indexed) */
-        /* [PORTING] __builtin_popcount is a GCC-specific intrinsic */
+        
         int disk = __builtin_popcount(changed_bit - 1); // #C04
 
         /* Current peg of the disk */
